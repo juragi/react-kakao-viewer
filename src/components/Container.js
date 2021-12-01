@@ -4,7 +4,8 @@ import FileHelper from './FileHelper';
 
 const containerStyle = {
     width: "400px",
-    margin: "0 auto"
+    margin: "0 auto",
+    "text-align": "left"
 }
 
 export default function Container(props) {

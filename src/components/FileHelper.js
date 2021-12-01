@@ -5,6 +5,11 @@ const labelStyle = {
     display: "block"
 }
 
+const descriptionStyle = {
+    "font-size": "12px",
+    "color": "#666"
+}
+
 export default function FileHelper(props) {
     const [myName, setMyName] = useState("");
     const makeChats = (lines) => {
@@ -75,6 +80,10 @@ export default function FileHelper(props) {
         <div>
             <label style={labelStyle}>내 이름: <input type='text' onChange={onNameChange}/></label>
             <label style={labelStyle}><input type='file' onChange={onFileChange}/></label>
+            <div><a href="https://github.com/juragi/react-kakao-viewer/releases/download/v0/default.eml">Download Sample file</a></div>
+            <div style={descriptionStyle}>
+                Sample file을 이용할 경우 이름은 '내이름'으로 입력한 다음 파일 선택
+            </div>
         </div>
     )
 }
