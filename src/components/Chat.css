@@ -1,0 +1,46 @@
+.ChatRoom {
+    background-color: lightblue;
+    width: 400px;
+    height: 500px;
+    overflow: auto;
+    margin: 0 auto;
+}
+.ChatItem {
+    margin: 2px;
+    text-align: left;
+}
+.ChatItem .Name {
+    font-weight: bold;
+    font-size: 11px;
+    margin-bottom: 2px;
+}
+.ChatItem .ChatText {
+    display:inline-block;
+    padding: 4px;
+    /* border: 1px solid whitesmoke; */
+    background-color: white;
+    max-width: 70%;
+    border-radius: 8px 8px;
+    text-align:left;
+}
+.ChatItem.MyChat {
+    text-align: right;
+}
+.ChatItem.MyChat .ChatText {
+    background-color: lightyellow;
+}
+.ChatItem .ChatText:not(:first-child) {
+    margin-top: 2px;
+}
+.ChatItem .Time {
+    font-size: 11px;
+    margin: 2px;
+}
+.DayStamp {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.Chat:not(:first-child) {
+    margin-top: 2px;
+}
