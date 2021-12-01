@@ -18,43 +18,49 @@ export default function FileHelper(props) {
         var lastName;
         var lastTimePart;
         var chat;
-        lines.forEach(x=> {
-            if(x.indexOf(",") > -1) {
-                var firstIndexOfComma = x.indexOf(",");
-                var firstIndexOfColon = x.indexOf(":", firstIndexOfComma);
-                var dateString = x.substr(0, firstIndexOfComma);
-                var name = x.substr(firstIndexOfComma + 1, firstIndexOfColon - firstIndexOfComma - 2).trim();
-                var chatText = x.substr(firstIndexOfColon + 1).trim();
+        lines.forEach((x, i)=> {
+            if(i > 1 && x) {
+                if(x.indexOf(",") > -1) {
+                    var firstIndexOfComma = x.indexOf(",");
+                    var firstIndexOfColon = x.indexOf(":", firstIndexOfComma);
+                    var dateString = x.substr(0, firstIndexOfComma);
+                    var name = x.substr(firstIndexOfComma + 1, firstIndexOfColon - firstIndexOfComma - 2).trim();
+                    var chatText = x.substr(firstIndexOfColon + 1).trim();
 
-                var dateStringSplited = dateString.split(" ");
-                var time = dateStringSplited.pop();
-                var ampm = dateStringSplited.pop();
-                var timePart = ampm + " " + time;
+                    var dateStringSplited = dateString.split(" ");
+                    var time = dateStringSplited.pop();
+                    var ampm = dateStringSplited.pop();
+                    var timePart = ampm + " " + time;
 
-                if(lastName !== name) {
-                    chat = {
-                        name: name,
-                        items: []
+                    if(lastName !== name) {
+                        chat = {
+                            name: name,
+                            items: []
+                        };
+                        chats.push(chat);
+                    } else if (lastTimePart === timePart) {
+                        //console.log(chat.items[chat.items.length - 1])
+                        chat.items[chat.items.length - 1].displayTime = false;
+                    }
+
+                    //console.log(timePart);
+
+                    
+                    //var chat = {name: name, items: []}
+                    var item = {
+                        date: dateString,
+                        text: chatText,
+                        timePart: timePart,
+                        displayTime: true
                     };
-                    chats.push(chat);
-                } else if (lastTimePart === timePart) {
-                    //console.log(chat.items[chat.items.length - 1])
-                    chat.items[chat.items.length - 1].displayTime = false;
+                    chat.items.push(item);
+                    lastName = name;
+                    lastTimePart = timePart;
+                } else {
+                    var datePart = x.split(/오전|오후/)[0].trim();
+                    
+                    chats.push({DateStamp: datePart});
                 }
-
-                //console.log(timePart);
-
-                
-                //var chat = {name: name, items: []}
-                var item = {
-                    date: dateString,
-                    text: chatText,
-                    timePart: timePart,
-                    displayTime: true
-                };
-                chat.items.push(item);
-                lastName = name;
-                lastTimePart = timePart;
             }
         });
         //console.log(chats);
