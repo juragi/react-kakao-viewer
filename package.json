@@ -1,5 +1,6 @@
 {
   "name": "kakao-viewer",
+  "homepage": "https://juragi.github.io/react-kakao-viewer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
